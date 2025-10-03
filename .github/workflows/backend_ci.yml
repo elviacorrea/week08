@@ -86,7 +86,7 @@ jobs:
           pip install pytest httpx
 
       # 5. Run tests for product service
-      - name: Run product-service tests
+      - name: Run product_service tests
         working-directory: backend/product_service
         env:
           POSTGRES_HOST: localhost
@@ -98,7 +98,7 @@ jobs:
           pytest tests --maxfail=1 --disable-warnings -q
       
       # 6. Run tests for order service
-      - name: Run order-service tests
+      - name: Run order_service tests
         working-directory: backend/order_service
         env:
           POSTGRES_HOST: localhost
@@ -131,14 +131,14 @@ jobs:
     # Build and Push Docker image for Product Service
     - name: Build and Push Product Service Image
       run: |
-        docker build -t ${{ env.ACR_LOGIN_SERVER }}/product-service:latest ./backend/product_service/
-        docker push ${{ env.ACR_LOGIN_SERVER }}/product-service:latest
+        docker build -t ${{ env.ACR_LOGIN_SERVER }}/product_service:latest ./backend/product_service/
+        docker push ${{ env.ACR_LOGIN_SERVER }}/product_service:latest
 
     # Build and Push Docker image for Order Service
     - name: Build and Push Order Service Image
       run: |
-        docker build -t ${{ env.ACR_LOGIN_SERVER }}/order-service:latest ./backend/order_service/
-        docker push ${{ env.ACR_LOGIN_SERVER }}/order-service:latest
+        docker build -t ${{ env.ACR_LOGIN_SERVER }}/order_service:latest ./backend/order_service/
+        docker push ${{ env.ACR_LOGIN_SERVER }}/order_service:latest
 
     # Logout from Azure for security (runs even if image push fails)
     - name: Logout from Azure
