@@ -87,7 +87,7 @@ jobs:
 
       # 5. Run tests for product service
       - name: Run product-service tests
-        working-directory: backend/product-service
+        working-directory: backend/product_service
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
@@ -99,7 +99,7 @@ jobs:
       
       # 6. Run tests for order service
       - name: Run order-service tests
-        working-directory: backend/order-service
+        working-directory: backend/order_service
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5433
@@ -131,13 +131,13 @@ jobs:
     # Build and Push Docker image for Product Service
     - name: Build and Push Product Service Image
       run: |
-        docker build -t ${{ env.ACR_LOGIN_SERVER }}/product-service:latest ./backend/product-service/
+        docker build -t ${{ env.ACR_LOGIN_SERVER }}/product-service:latest ./backend/product_service/
         docker push ${{ env.ACR_LOGIN_SERVER }}/product-service:latest
 
     # Build and Push Docker image for Order Service
     - name: Build and Push Order Service Image
       run: |
-        docker build -t ${{ env.ACR_LOGIN_SERVER }}/order-service:latest ./backend/order-service/
+        docker build -t ${{ env.ACR_LOGIN_SERVER }}/order-service:latest ./backend/order_service/
         docker push ${{ env.ACR_LOGIN_SERVER }}/order-service:latest
 
     # Logout from Azure for security (runs even if image push fails)
